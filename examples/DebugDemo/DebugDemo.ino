@@ -38,8 +38,8 @@ void loop()
     TDEBUG_PRINT(timedMessage, "This is a non blocking, timed and toggleable debug message");
     TDEBUG_PRINT(timedMessage2, ":)");
 
-    if(freeRam(freeRamTimer)) //Prints ammount of RAM left. Useful for finding memory leaks
+    freeRam(freeRamTimer) //Prints ammount of RAM left. Useful for finding memory leaks
     {
-        DEBUG_PRINTLN("This message is printed if a memory leak is detected");
+        DEBUG_PRINTLN("This message is printed if a memory change is detected");
     }
 }
