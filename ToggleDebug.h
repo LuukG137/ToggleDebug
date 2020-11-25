@@ -17,6 +17,12 @@
 
 #define FILE_NAME (strrchr(__FILE__, '\\') ? strrchr(__FILE__, '\\') + 1: __FILE__)
 
+#ifdef FILE_FULL_PATH
+
+#define FILE_NAME __FILE__
+
+#endif
+
 #if (DEBUG == 1) //Standard debug mode
 
 #define TDEBUG_PRINT(inst, x) inst.debugPrint(String(millis()) + ": " + FILE_NAME + " " + __PRETTY_FUNCTION__ + " line:" + __LINE__ + " " + String(x)) //Add useful information to debug message
