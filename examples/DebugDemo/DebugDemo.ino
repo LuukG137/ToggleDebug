@@ -4,6 +4,8 @@
 #define DEBUG 2  *Ram only mode. Only the freeRam function is compiled.
 #define DEBUG 3  *String only mode. All the debug functions are compiled but will not print any extra information.
 
+#define FILE_SHOW_FULL_PATH * This will show the full file path in stead of the file name.
+
 *Define DEBUG before including the library
 *DEBUG will be defined as 0 if not defined by the user
 
@@ -13,8 +15,8 @@ DEBUG_PRINTLN() = Serial.println()
 DEBUG_FLUSH()   = Serial.flush()
 
 TDebug(timer, delay)  *Create debug timer instance. This timer is used for non blocking, timed printlns
-TDEBUG_PRINT(timer, "Message")  *Print timed message every x milliseconds. Will show extra information like current millis, line and method if enabled
-freeRam(timer)  *Print timed message which shows ammount of RAM left. //Returns true if memory leak has been detected
+TDEBUG_PRINT(timer instance, "Message")  *Print timed message every x milliseconds. Will show extra information like current millis, line and method if enabled
+availableMem(timer instance, error method (optional))  *Print timed message which shows ammount of RAM left. Calls optional method if change in memory is detected
 */
 
 #define DEBUG 1 //Toggle debug messages by commenting or de-commenting this define
@@ -23,7 +25,7 @@ freeRam(timer)  *Print timed message which shows ammount of RAM left. //Returns 
 TDebug(timedMessage, 3000); //Initialize timed debug message
 TDebug(timedMessage2, 200);
 
-TDebug(freeRamTimer, 6000); //Initialize timed debug message for freeRam() method
+TDebug(availableMemTimer, 6000); //Initialize timed debug message for availableMem() method
 
 void setup()
 {
@@ -38,8 +40,10 @@ void loop()
     TDEBUG_PRINT(timedMessage, "This is a non blocking, timed and toggleable debug message");
     TDEBUG_PRINT(timedMessage2, ":)");
 
-    freeRam(freeRamTimer) //Prints ammount of RAM left. Useful for finding memory leaks
-    {
-        DEBUG_PRINTLN("This message is printed if a memory change is detected");
-    }
+    availableMem(availableMemTimer, errorMethod()) //Prints ammount of unused RAM between the stack and heap. Useful for finding memory leaks.
+}                                                  //Optional method can be passed that will fire when a memory error is detected. 
+
+void errorMethod()
+{
+    DEBUG_PRINTLN("Prints if memory error is detected by availableMem method");
 }
