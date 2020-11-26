@@ -12,7 +12,7 @@
 #define DEBUG_PRINT(x)
 #define DEBUG_PRINTLN(x)
 #define TDebug(name, delay)
-#define availableMem(inst) if (0)
+#define availableMem(...)
 #define DEBUG_FLUSH()
 
 #define FILE_NAME (strrchr(__FILE__, '\\') ? strrchr(__FILE__, '\\') + 1: __FILE__)
@@ -23,6 +23,10 @@
 
 #endif
 
+
+#define GETMEM(inst, errfunc, ...) if(inst.getAvailableMemory(FILE_NAME, __PRETTY_FUNCTION__, __LINE__)) { errfunc; }
+#define DEFAULT ;
+
 #if (DEBUG == 1) //Standard debug mode
 
 #define TDEBUG_PRINT(inst, x) inst.debugPrint(String(millis()) + ": " + FILE_NAME + " " + __PRETTY_FUNCTION__ + " line:" + __LINE__ + " " + String(x)) //Add useful information to debug message
@@ -30,14 +34,14 @@
 #define DEBUG_PRINT(x) Serial.print(String(x))
 #define DEBUG_PRINTLN(x) Serial.println(String(millis()) + ": " + FILE_NAME + " " + __PRETTY_FUNCTION__ + " line:" + __LINE__ + " " + String(x))
 #define TDebug(name, delay) ToggleDebug name(delay)
-#define availableMem(inst) if(inst.getAvailableMemory(FILE_NAME, __PRETTY_FUNCTION__, __LINE__))
+#define availableMem(...) GETMEM(__VA_ARGS__, ,##__VA_ARGS__ DEFAULT )
 #define DEBUG_FLUSH() Serial.flush()
 
 #elif (DEBUG == 2) //Ram only mode
 
 #define DEBUG_BEGIN(x) Serial.begin(x)
 #define TDebug(name, delay) ToggleDebug name(delay)
-#define availableMem(inst) if(inst.getAvailableMemory(FILE_NAME, __PRETTY_FUNCTION__, __LINE__))
+#define availableMem(...) GETMEM(__VA_ARGS__, ,##__VA_ARGS__ DEFAULT )
 #define DEBUG_FLUSH() Serial.flush()
 
 #elif (DEBUG == 3) //String only mode
@@ -47,7 +51,7 @@
 #define DEBUG_PRINT(x) Serial.print(String(x))
 #define DEBUG_PRINTLN(x) Serial.println(String(x))
 #define TDebug(name, delay) ToggleDebug name(delay)
-#define availableMem(inst) if(inst.getAvailableMemory(FILE_NAME, __PRETTY_FUNCTION__, __LINE__))
+#define availableMem(...) GETMEM(__VA_ARGS__, ,##__VA_ARGS__ DEFAULT )
 #define DEBUG_FLUSH() Serial.flush()
 
 #endif
