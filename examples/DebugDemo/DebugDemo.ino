@@ -2,9 +2,9 @@
 #define DEBUG 0  *Debug mode off, none of the debug functions will be compiled.
 #define DEBUG 1  *Debug mode. All debug functions are included and useful information like current method, line and millis are printed along with the debug message.
 #define DEBUG 2  *Ram only mode. Only the freeRam function is compiled.
-#define DEBUG 3  *String only mode. All the debug functions are compiled but will not print any extra information.
 
 #define FILE_SHOW_FULL_PATH * This will show the full file path in stead of the file name.
+#define HIDE_EXTRA_INFO * This will hide extra info like filename, line and method from debug messages
 
 *Define DEBUG before including the library
 *DEBUG will be defined as 0 if not defined by the user
@@ -41,7 +41,7 @@ void loop()
     TDEBUG_PRINT(timedMessage2, ":)");
 
     availableMem(availableMemTimer, errorMethod()) //Prints ammount of unused RAM between the stack and heap. Useful for finding memory leaks.
-}                                                  //Optional method can be passed that will fire when a memory error is detected. 
+}                                                  //Optional method can be passed that will fire when a memory error is detected.
 
 void errorMethod()
 {
