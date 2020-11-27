@@ -14,7 +14,7 @@ void ToggleDebug::debugPrint(String message) //Print debug message every x milli
     }
 }
 
-bool ToggleDebug::getAvailableMemory(String file, String method, int line) //Get available RAM memory between stack and heap. Returns true if change is detected
+bool ToggleDebug::getAvailableMemory(String file, String method, int line, bool extraInfo) //Get available RAM memory between stack and heap. Returns true if change is detected
 {
     bool error = false;
     if (millis() - _timer >= _delay)
@@ -31,7 +31,15 @@ bool ToggleDebug::getAvailableMemory(String file, String method, int line) //Get
             error = true;
         }
 
-        Serial.println(String(millis()) + ": " + file + " " + method + " line:" + line +  " Memory free: " + String(freeMemory) + " bytes");
+        if(extraInfo)
+        {
+            Serial.println(String(millis()) + ": " + file + " " + method + " line:" + line +  " Memory free: " + String(freeMemory) + " bytes");
+        }
+        else
+        {
+            Serial.println("Memory free: " + String(freeMemory) + " bytes");
+        }
+
 
         _prevMem = freeMemory;
     }
