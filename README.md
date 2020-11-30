@@ -64,5 +64,5 @@ By using this library, you can use the standard arduino print functions and make
 DEBUG_BEGIN(115200); 	 //Serial.println(115200);
 DEBUG_PRINT("Message") 	 //Serial.print("Message");
 DEBUG_PRINTLN("Message") //Serial.println("Message");
-DEBUG_FLUSH();		 //Serial.flush
+DEBUG_FLUSH();		 //Serial.flush();
 ```
