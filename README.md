@@ -65,4 +65,6 @@ DEBUG_BEGIN(115200); 	 //Serial.begin(115200);
 DEBUG_PRINT("Message") 	 //Serial.print("Message");
 DEBUG_PRINTLN("Message") //Serial.println("Message");
 DEBUG_FLUSH();		 //Serial.flush();
+
+DEBUG_PRINTMEM(); //This wil print and return the ammount of memory left between stack and heap.
 ```
