@@ -27,7 +27,7 @@ Finally:
 
 ## Initializing timers
 
-Timed debugging messages need a timer instance. These can be initialized after including the library
+Timed debugging messages need a timer instance. These can be initialized after including the library.
 Timers are used for the TDEBUG_PRINT and TDEBUG_PRINTMEM functions.
 
 ```cpp
