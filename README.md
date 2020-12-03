@@ -17,7 +17,7 @@ Before including the library, #define the debugging mode:
 
 Optional:
 ```cpp
-#define FILE_SHOW_FULL_PATH //Shows full file path in debug messages in stead of file name.
+#define FILE_SHOW_FULL_PATH //Shows full file path in debug messages instead of file name.
 #define HIDE_EXTRA_INFO //Hides info in debug messages like current line and method, millis and filename.
 ```
 Finally: 
