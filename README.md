@@ -18,7 +18,7 @@ Before including the library, #define the debugging mode:
 Optional:
 ```cpp
 #define FILE_SHOW_FULL_PATH //Shows full file path in debug messages instead of file name.
-#define HIDE_EXTRA_INFO //Hides info in debug messages like current line and method, millis and filename.
+#define HIDE_EXTRA_INFO     //Hides info in debug messages like current line and method, millis and filename.
 ```
 Finally: 
 ```cpp
@@ -41,8 +41,8 @@ TDEBUG(timer3, 2000);
 Currently, the library has two timed, non blocking functions
 
 ```cpp
-TDEBUG_PRINT(timer1, "Hello!"); //This will print "Hello!" every 2 seconds
-TDEBUG_PRINTMEM(timer2); //This will print the ammount of memory left between stack and heap every 4 seconds.
+TDEBUG_PRINT(timer1, "Hello!"); 	//This will print "Hello!" every 2 seconds
+TDEBUG_PRINTMEM(timer2); 		//This will print the ammount of memory left between stack and heap every 4 seconds.
 TDEBUG_PRINTMEM(timer3, errorMethod()); //You can add an optional method as second parameter. This method will be called if a change in memory has been detected.
 
 void errorMethod()
@@ -66,5 +66,5 @@ DEBUG_PRINT("Message");	  //Serial.print("Message");
 DEBUG_PRINTLN("Message"); //Serial.println("Message");
 DEBUG_FLUSH();		  //Serial.flush();
 
-DEBUG_PRINTMEM(); //This wil print and return the ammount of memory left between stack and heap.
+DEBUG_PRINTMEM(); 	  //This wil print and return the ammount of memory left between stack and heap.
 ```
